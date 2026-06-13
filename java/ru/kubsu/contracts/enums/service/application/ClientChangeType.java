@@ -1,22 +1,41 @@
 package ru.kubsu.contracts.enums.service.application;
 
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import ru.kubsu.contracts.enums.FileLabelEnumParser;
+
 /**
  * Тип изменяемых данных клиента в заявлении.
  */
+@Getter
+@RequiredArgsConstructor
 public enum ClientChangeType {
 
     /** Адрес. */
-    ADDRESS,
+    ADDRESS("Адрес"),
 
     /** Паспортные данные. */
-    PASSPORT,
+    PASSPORT("Паспорт"),
 
     /** ФИО. */
-    NAME,
+    NAME("ФИО"),
 
     /** ИНН. */
-    ITN,
+    ITN("ИНН"),
 
     /** СНИЛС. */
-    INSURANCE_NUMBER
+    INSURANCE_NUMBER("СНИЛС");
+
+    /** Значение в файле загрузки. */
+    private final String fileLabel;
+
+    /**
+     * Определяет тип изменения по значению из файла загрузки.
+     *
+     * @param value текст из файла
+     * @return тип изменения
+     */
+    public static ClientChangeType parseFileLabel(String value) {
+        return FileLabelEnumParser.parse(value, values(), ClientChangeType::getFileLabel, "Тип изменения");
+    }
 }

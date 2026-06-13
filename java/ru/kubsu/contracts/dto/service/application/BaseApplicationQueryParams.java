@@ -19,6 +19,9 @@ import java.time.OffsetDateTime;
 @Accessors(chain = true)
 public class BaseApplicationQueryParams {
 
+    /** Признак мягкого удаления (по умолчанию false — только активные заявления). */
+    private Boolean deleted = false;
+
     /** Бизнес-статус заявления. */
     private ApplicationStatusBusiness statusBusiness;
 

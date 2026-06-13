@@ -1,6 +1,5 @@
-package ru.kubsu.contracts.dto.service.application;
+package ru.kubsu.contracts.messaging.service.application;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -16,18 +15,18 @@ import java.time.OffsetDateTime;
 import java.util.UUID;
 
 /**
- * Базовое DTO заявления клиента.
+ * Сообщение для витрины report_application.
  */
 @Getter
 @Setter
 @NoArgsConstructor
 @Accessors(chain = true)
-public class ApplicationTo {
+public class ApplicationReportMessage {
 
     /** Идентификатор заявления. */
     private UUID id;
 
-    /** Идентификатор клиента (заполняется после post-processing). */
+    /** Идентификатор клиента. */
     private UUID clientId;
 
     /** Номер заявления. */
@@ -39,24 +38,14 @@ public class ApplicationTo {
     /** Канал подачи заявления. */
     private Channel channel;
 
-    /** Внутренний статус заявления. */
-    private ApplicationStatusInternal statusInternal;
-
     /** Бизнес-статус заявления. */
     private ApplicationStatusBusiness statusBusiness;
 
-    /** Причина статуса из status_inform. */
+    /** Внутренний статус заявления. */
+    private ApplicationStatusInternal statusInternal;
+
+    /** Текст причины статуса из status_inform. */
     private String reason;
-
-    /** Дата создания заявления. */
-    private OffsetDateTime createdDate;
-
-    /** Дата закрытия заявления. */
-    private OffsetDateTime closedDate;
-
-    /** Признак мягкого удаления (не отдаётся в API). */
-    @JsonIgnore
-    private boolean deleted;
 
     /** Фамилия клиента на момент подачи заявления. */
     private String lastName;
@@ -84,4 +73,13 @@ public class ApplicationTo {
 
     /** СНИЛС клиента на момент подачи заявления. */
     private String insuranceNumber;
+
+    /** Дата создания заявления. */
+    private OffsetDateTime createdDate;
+
+    /** Дата закрытия заявления. */
+    private OffsetDateTime closedDate;
+
+    /** Признак мягкого удаления. */
+    private boolean deleted;
 }

@@ -29,7 +29,19 @@ public enum ApplicationStatusInternal {
     FLC_INVALID_SUBMISSION("202"),
 
     /** Клиент не найден. */
-    CLIENT_NOT_FOUND("301");
+    CLIENT_NOT_FOUND("301"),
+
+    /** ИНН в заявлении не соответствует данным клиента. */
+    ITN_NOT_ACTUAL("302"),
+
+    /** СНИЛС в заявлении не соответствует данным клиента. */
+    INSURANCE_NUMBER_NOT_ACTUAL("303"),
+
+    /** Не указан ИНН в заявлении. */
+    ITN_NOT_REQUIRED("304"),
+
+    /** Не указан СНИЛС в заявлении. */
+    INSURANCE_NUMBER_NOT_REQUIRED("305");
 
     /** Код правила в таблице status_inform. */
     private final String code;
